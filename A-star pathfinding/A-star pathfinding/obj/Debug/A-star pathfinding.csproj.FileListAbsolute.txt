@@ -1,0 +1,6 @@
+c:\users\serge\documents\visual studio 2015\Projects\A-star pathfinding\A-star pathfinding\bin\Debug\A-star pathfinding.exe.config
+c:\users\serge\documents\visual studio 2015\Projects\A-star pathfinding\A-star pathfinding\bin\Debug\A-star pathfinding.exe
+c:\users\serge\documents\visual studio 2015\Projects\A-star pathfinding\A-star pathfinding\bin\Debug\A-star pathfinding.pdb
+c:\users\serge\documents\visual studio 2015\Projects\A-star pathfinding\A-star pathfinding\obj\Debug\A-star pathfinding.csprojResolveAssemblyReference.cache
+c:\users\serge\documents\visual studio 2015\Projects\A-star pathfinding\A-star pathfinding\obj\Debug\A-star pathfinding.exe
+c:\users\serge\documents\visual studio 2015\Projects\A-star pathfinding\A-star pathfinding\obj\Debug\A-star pathfinding.pdb
