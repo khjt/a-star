@@ -16,7 +16,6 @@ namespace A_star_pathfinding
             Position = new Vector2(x, y);
             Appearance = appearance;
         }
-
         public void Move(int xAxis, int yAxis)
         {
             if (IsAllowedToMove(xAxis, yAxis))
@@ -28,7 +27,6 @@ namespace A_star_pathfinding
 
             }
         }
-
         public void Control()
         {
             ConsoleKeyInfo key = Console.ReadKey(true);
@@ -65,14 +63,12 @@ namespace A_star_pathfinding
                     break;
             }
         }
-
         public bool IsAllowedToMove(int xAxis, int yAxis)
         {
             if (this.Position.X + xAxis >= 0 && this.Position.Y + yAxis >= 0 && this.Position.X + xAxis <= Console.WindowWidth - 1 && this.Position.Y + yAxis <= Console.WindowHeight - 1)
                 return Program.Grid[Position.X + xAxis, Position.Y + yAxis].AvailableToMove;
             else return false;
         }
-
         public Node[,] GetNodesAround()
         {
             Node[,] temp = new Node[3, 3];
@@ -92,26 +88,31 @@ namespace A_star_pathfinding
             Console.SetCursorPosition(this.Position.X, this.Position.Y);
             Console.Write(this.Appearance);
         }
+
+        private static void LUL() //just for luls
+        {
+
+        }
     }
 
     class Character : Being
     {
         internal string Name { get; set; }
 
-        public Character(int x, int y, char appear = '@') : base(0, 0)
+        public Character(int x, int y, char appear = '@') : base(0, 0, appear)
         {
             if (x == -1 && y == -1)
             {
+                Random rng = new Random();
                 for (int i = 0; i < Program.Grid.GetLength(0) / 3; i++)
                 {
                     for (int j = 0; j < Program.Grid.GetLength(1) / 3; j++)
                     {
-                        if (Program.Grid[i, j].Appearance == ' ')
+                        if (Program.Grid[i, j].Appearance == ' ' && rng.Next(100) > 95)
                         {
                             base.Position.X = i;
                             base.Position.Y = j;
-                            base.Appearance = '@';
-                            break;
+                            return;
                         }
                     }
                 }
@@ -143,9 +144,31 @@ namespace A_star_pathfinding
 
     class Item : Being
     {
-        public Item(int x, int y, char appear = '?') : base(x, y, appear)
+        public Item(int x, int y, char appear = '%') : base(x, y, appear)
         {
+            if (x == -1 && y == -1)
+            {
+                Random rng = new Random();
+                for (int i = Console.WindowWidth - 2; i > Program.Grid.GetLength(0) / 3; i--)
+                {
+                    for (int j = Console.WindowHeight - 2; j > Program.Grid.GetLength(1) / 3; j--)
+                    {
+                        if (Program.Grid[i, j].Appearance == ' ' && rng.Next(100) > 95)
+                        {
+                            base.Position.X = i;
+                            base.Position.Y = j;
+                            return;
+                        }
+                    }
+                }
+            }
+        }
 
+        public override void Show()
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            base.Show();
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }

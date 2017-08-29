@@ -10,7 +10,21 @@ namespace A_star_pathfinding
     {
         internal Vector2 Position;
         internal char Appearance;
-        internal Node Parent { get; set; }
+
+        #region A-star stuff
+        internal Node ParentNode { get; set; }
+        internal int G { get; set; }
+        internal int H { get; set; }
+
+        internal int F
+        {
+            get
+            {
+                return G + H;
+            }
+            private set { }
+        }
+        #endregion
 
         public bool AvailableToMove
         {
@@ -30,13 +44,11 @@ namespace A_star_pathfinding
             Position = vector;
             Appearance = ' ';
         }
-
         public Node(int x, int y)
         {
             Position = new Vector2(x, y);
             Appearance = ' ';
         }
-
         public Node(int x, int y, char appearance)
         {
             Position = new Vector2(x, y);
@@ -71,6 +83,17 @@ namespace A_star_pathfinding
         {
             this.X = x;
             this.Y = y;
+        }
+
+        public static bool operator !=(Vector2 vec1, Vector2 vec2)
+        {
+            if (vec1.X != vec2.X || vec1.Y != vec2.Y) return true;
+            else return false;
+        }
+        public static bool operator ==(Vector2 vec1, Vector2 vec2)
+        {
+            if (vec1.X == vec2.X || vec1.Y == vec2.Y) return true;
+            else return false;
         }
     }
 }
